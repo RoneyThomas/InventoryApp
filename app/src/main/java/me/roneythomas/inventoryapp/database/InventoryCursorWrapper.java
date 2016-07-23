@@ -9,9 +9,9 @@ import me.roneythomas.inventoryapp.database.InventorySchema.InventoryTable;
 /**
  * Created by roneythomas on 2016-07-22.
  */
-public class InventoryCursorHelper extends CursorWrapper {
+public class InventoryCursorWrapper extends CursorWrapper {
 
-    public InventoryCursorHelper(Cursor cursor) {
+    public InventoryCursorWrapper(Cursor cursor) {
         super(cursor);
     }
 
