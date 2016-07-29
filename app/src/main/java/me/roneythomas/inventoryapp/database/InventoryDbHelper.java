@@ -24,7 +24,8 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
                 "id integer primary key autoincrement, " +
                 InventoryTable.Cols.NAME + ", " +
                 InventoryTable.Cols.QUANTITY + ", " +
-                InventoryTable.Cols.PRICE + ")");
+                InventoryTable.Cols.PRICE + ", " +
+                InventoryTable.Cols.URI + ")");
     }
 
     @Override

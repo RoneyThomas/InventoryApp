@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="inventory"
+            type="me.roneythomas.inventoryapp.Inventory"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:showIn="@layout/list_item">
+
+        <TextView
+            android:id="@+id/quantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@{@string/quantity(inventory.quantity)}"
+            android:textStyle="normal|bold"
+            tools:text="1"/>
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:elegantTextHeight="false"
+            android:text="@{@string/price(inventory.price)}"
+            android:textAlignment="textEnd"
+            android:textStyle="normal|bold"
+            tools:text="134$"/>
+    </LinearLayout>
+</layout>

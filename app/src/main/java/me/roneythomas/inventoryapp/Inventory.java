@@ -1,18 +1,25 @@
 package me.roneythomas.inventoryapp;
 
+
 /**
  * Created by roneythomas on 2016-07-22.
  */
 public class Inventory {
 
     private String name;
-    private int quantity;
-    private double price;
+    private String quantity;
+    private String price;
+    private String uri;
 
-    public Inventory(String name, int quantity, double price) {
+    public Inventory() {
+
+    }
+
+    public Inventory(String name, String quantity, String price, String uri) {
         this.name = name;
         this.quantity = quantity;
         this.price = price;
+        this.uri = uri;
     }
 
     public String getName() {
@@ -23,19 +30,27 @@ public class Inventory {
         this.name = name;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 }

@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">InventoryApp</string>
+    <string name="app_name">Inventory App</string>
+    <string name="menu_add">Add</string>
+    <string name="edit_text">Name</string>
+    <string name="quantity_text">Enter Quantity</string>
+    <string name="sale_button">Sale</string>
+    <string name="receiving_button">Receiving</string>
+    <string name="order_button">Order</string>
+    <string name="delete_button">Delete</string>
+    <string name="submit_button">Submit</string>
+    <string name="add_image">Add Image</string>
+    <string name="enter_quantity">Enter Quantity</string>
+    <string name="enter_price">Enter Price</string>
+    <string name="no_image_error">No image selected for the profuct</string>
+    <string name="no_quantity_price_error">Either Quantity or Price is empty.</string>
+    <string name="quantity">QNTY : %1$s</string>
+    <string name="price">%1$s $</string>
+    <string name="validation_error">You can\'t leave empty fields.</string>
 </resources>

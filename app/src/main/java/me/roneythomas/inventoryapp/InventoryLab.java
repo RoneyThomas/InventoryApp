@@ -18,17 +18,14 @@ public class InventoryLab {
 
     private static InventoryLab mInventoryLab;
     private SQLiteDatabase mDatabase;
-    private ArrayList<Inventory> mInventories;
-    private Context mContext;
 
     private InventoryLab(Context context) {
         mDatabase = new InventoryDbHelper(context).getWritableDatabase();
-        mContext = context;
     }
 
-    public InventoryLab get(Context context) {
+    public static InventoryLab get(Context context) {
         if (mInventoryLab == null) {
-            new InventoryLab(context);
+            mInventoryLab = new InventoryLab(context.getApplicationContext());
         }
         return mInventoryLab;
     }
@@ -80,6 +77,7 @@ public class InventoryLab {
         values.put(InventoryTable.Cols.NAME, inventory.getName());
         values.put(InventoryTable.Cols.QUANTITY, inventory.getQuantity());
         values.put(InventoryTable.Cols.PRICE, inventory.getPrice());
+        values.put(InventoryTable.Cols.URI, inventory.getUri());
         return values;
     }
 

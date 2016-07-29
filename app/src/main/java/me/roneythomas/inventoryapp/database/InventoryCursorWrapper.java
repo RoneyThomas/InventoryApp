@@ -17,9 +17,10 @@ public class InventoryCursorWrapper extends CursorWrapper {
 
     public Inventory getInventory() {
         String name = getString(getColumnIndex(InventoryTable.Cols.NAME));
-        int quantity = getInt(getColumnIndex(InventoryTable.Cols.QUANTITY));
-        double price = getDouble(getColumnIndex(InventoryTable.Cols.PRICE));
+        String quantity = getString(getColumnIndex(InventoryTable.Cols.QUANTITY));
+        String price = getString(getColumnIndex(InventoryTable.Cols.PRICE));
+        String uri = getString(getColumnIndex(InventoryTable.Cols.URI));
 
-        return new Inventory(name, quantity, price);
+        return new Inventory(name, quantity, price, uri);
     }
 }
