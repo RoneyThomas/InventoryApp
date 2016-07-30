@@ -1,11 +1,13 @@
 package me.roneythomas.inventoryapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -80,8 +82,21 @@ public class InventoryDetailFragment extends Fragment {
         binding.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InventoryLab.get(getContext()).deleteInventory(inventory);
-                goBackStack();
+                AlertDialog dialog = new AlertDialog.Builder(getActivity()).setTitle("Delete entry")
+                        .setMessage("Are you sure you want to delete this entry?")
+                        .setPositiveButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                goBackStack();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                InventoryLab.get(getContext()).deleteInventory(inventory);
+                                goBackStack();
+                            }
+                        })
+                        .setIcon(R.drawable.ic_warning_black_24dp)
+                        .show();
             }
         });
         String uri = inventory.getUri();

@@ -16,4 +16,5 @@
     <string name="quantity">QNTY : %1$s</string>
     <string name="price">%1$s $</string>
     <string name="validation_error">You can\'t leave empty fields.</string>
+    <string name="empty_list">List is empty. You can add Inventory by pressing &#x2795;</string>
 </resources>
