@@ -83,7 +83,7 @@ public class InventoryDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 AlertDialog dialog = new AlertDialog.Builder(getActivity()).setTitle("Delete entry")
-                        .setMessage("Are you sure you want to delete this entry?")
+                        .setMessage(R.string.alert_dialog_message)
                         .setPositiveButton(android.R.string.no, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 goBackStack();
