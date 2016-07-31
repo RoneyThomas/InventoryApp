@@ -53,6 +53,7 @@ public class InventoryAddFragment extends Fragment {
                 try {
                     inventory.setQuantity(binding.quantityEditText.getText().toString());
                     inventory.setPrice(binding.priceEditText.getText().toString());
+                    inventory.setPhone(binding.phoneEditText.getText().toString());
                 } catch (NumberFormatException e) {
                     Toast.makeText(getActivity(), R.string.no_quantity_price_error, Toast.LENGTH_SHORT).show();
                 }
@@ -89,7 +90,7 @@ public class InventoryAddFragment extends Fragment {
 
     private void saveInventory() {
         InventoryLab inventoryLab = InventoryLab.get(getActivity());
-        if (!(inventory.getName().isEmpty() || inventory.getQuantity().isEmpty() || inventory.getPrice().isEmpty())) {
+        if (!(inventory.getName().isEmpty() || inventory.getQuantity().isEmpty() || inventory.getPrice().isEmpty() || inventory.getPhone().isEmpty())) {
             if (inventoryLab.getInventory(inventory.getName()) == null) {
                 inventoryLab.addInventory(inventory);
             } else {

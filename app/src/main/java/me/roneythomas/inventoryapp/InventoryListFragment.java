@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -28,6 +27,7 @@ import me.roneythomas.inventoryapp.databinding.ListItemBinding;
 public class InventoryListFragment extends ListFragment {
 
     ArrayList<Inventory> inventoryArrayList;
+    InventoryAdapter adapter;
 
     public static InventoryListFragment newInstance() {
 
@@ -52,7 +52,7 @@ public class InventoryListFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         inventoryArrayList = InventoryLab.get(getActivity()).getInventorys();
-        InventoryAdapter adapter = new InventoryAdapter(getActivity(), inventoryArrayList);
+        adapter = new InventoryAdapter(getActivity(), inventoryArrayList);
         setListAdapter(adapter);
     }
 
@@ -87,7 +87,32 @@ public class InventoryListFragment extends ListFragment {
                 binding = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.list_item, parent, false);
                 convertView = binding.getRoot();
             }
-            binding.setInventory(inventoryArrayList.get(position));
+            final Inventory inventory = inventoryArrayList.get(position);
+            binding.setInventory(inventory);
+            binding.includedSaleButton.saleButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try {
+                        int quantity = Integer.parseInt(inventory.getQuantity());
+                        if (quantity > 0) {
+                            quantity--;
+                            inventory.setQuantity(String.valueOf(quantity));
+                            InventoryLab.get(getContext()).updateInventory(inventory);
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    inventoryArrayList = InventoryLab.get(getActivity()).getInventorys();
+                                    adapter.clear();
+                                    adapter.addAll(inventoryArrayList);
+                                    notifyDataSetChanged();
+                                }
+                            });
+                        }
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

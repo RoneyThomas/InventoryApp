@@ -10,16 +10,18 @@ public class Inventory {
     private String quantity;
     private String price;
     private String uri;
+    private String phone;
 
     public Inventory() {
 
     }
 
-    public Inventory(String name, String quantity, String price, String uri) {
+    public Inventory(String name, String quantity, String price, String uri, String phone) {
         this.name = name;
         this.quantity = quantity;
         this.price = price;
         this.uri = uri;
+        this.phone = phone;
     }
 
     public String getName() {
@@ -52,5 +54,13 @@ public class Inventory {
 
     public void setUri(String uri) {
         this.uri = uri;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

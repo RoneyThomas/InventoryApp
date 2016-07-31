@@ -42,19 +42,17 @@ public class InventoryDetailFragment extends Fragment {
         updateBinding(binding, inventory);
         View view = binding.getRoot();
         setHasOptionsMenu(true);
-        binding.saleButton.setOnClickListener(new View.OnClickListener() {
+        binding.includedSaleButton.saleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
                     int quantity = Integer.parseInt(inventory.getQuantity());
                     if (quantity > 0) {
                         quantity--;
-                        inventory.setQuantity(String.valueOf(quantity));
-                        InventoryLab.get(getContext()).updateInventory(inventory);
-                        updateBinding(binding, inventory);
+                        updateQuantity(quantity, inventory, binding);
                     }
                 } catch (NumberFormatException e) {
-
+                    e.printStackTrace();
                 }
             }
         });
@@ -64,11 +62,9 @@ public class InventoryDetailFragment extends Fragment {
                 try {
                     int quantity = Integer.parseInt(inventory.getQuantity());
                     quantity++;
-                    inventory.setQuantity(String.valueOf(quantity));
-                    InventoryLab.get(getContext()).updateInventory(inventory);
-                    updateBinding(binding, inventory);
+                    updateQuantity(quantity, inventory, binding);
                 } catch (NumberFormatException e) {
-
+                    e.printStackTrace();
                 }
             }
         });
@@ -76,6 +72,7 @@ public class InventoryDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + inventory.getPhone()));
                 startActivity(intent);
             }
         });
@@ -84,15 +81,15 @@ public class InventoryDetailFragment extends Fragment {
             public void onClick(View view) {
                 AlertDialog dialog = new AlertDialog.Builder(getActivity()).setTitle("Delete entry")
                         .setMessage(R.string.alert_dialog_message)
-                        .setPositiveButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                goBackStack();
-                            }
-                        })
-                        .setNegativeButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 InventoryLab.get(getContext()).deleteInventory(inventory);
                                 goBackStack();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                //do nothing stay in the current fragment
                             }
                         })
                         .setIcon(R.drawable.ic_warning_black_24dp)
@@ -104,6 +101,12 @@ public class InventoryDetailFragment extends Fragment {
             binding.imageView.setImageURI(Uri.parse(inventory.getUri()));
         }
         return view;
+    }
+
+    private void updateQuantity(int quantity, Inventory inventory, InventoryDetailBinding binding) {
+        inventory.setQuantity(String.valueOf(quantity));
+        InventoryLab.get(getContext()).updateInventory(inventory);
+        updateBinding(binding, inventory);
     }
 
     private void updateBinding(InventoryDetailBinding binding, Inventory inventory) {
@@ -122,8 +125,9 @@ public class InventoryDetailFragment extends Fragment {
             case android.R.id.home:
                 goBackStack();
                 return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     private void goBackStack() {

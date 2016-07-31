@@ -25,7 +25,8 @@ public class InventoryDbHelper extends SQLiteOpenHelper {
                 InventoryTable.Cols.NAME + ", " +
                 InventoryTable.Cols.QUANTITY + ", " +
                 InventoryTable.Cols.PRICE + ", " +
-                InventoryTable.Cols.URI + ")");
+                InventoryTable.Cols.URI + ", " +
+                InventoryTable.Cols.PHONE + ")");
     }
 
     @Override

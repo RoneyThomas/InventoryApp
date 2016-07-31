@@ -13,6 +13,7 @@ public class InventorySchema {
             public static final String QUANTITY = "quantity";
             public static final String PRICE = "price";
             public static final String URI = "uri";
+            public static final String PHONE = "phone";
         }
     }
 }

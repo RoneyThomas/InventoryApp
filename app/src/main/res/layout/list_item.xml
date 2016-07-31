@@ -30,6 +30,10 @@
             layout="@layout/quantity_price"
             app:inventory="@{inventory}"/>
 
+        <include
+            android:id="@+id/included_sale_button"
+            layout="@layout/sale_button"/>
+
     </LinearLayout>
 
 </layout>

@@ -28,11 +28,9 @@
             layout="@layout/quantity_price"
             app:inventory="@{inventory}"/>
 
-        <Button
-            android:id="@+id/sale_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/sale_button"/>
+        <include
+            android:id="@+id/included_sale_button"
+            layout="@layout/sale_button"/>
 
         <Button
             android:id="@+id/receiving_button"

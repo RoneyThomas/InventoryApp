@@ -78,6 +78,7 @@ public class InventoryLab {
         values.put(InventoryTable.Cols.QUANTITY, inventory.getQuantity());
         values.put(InventoryTable.Cols.PRICE, inventory.getPrice());
         values.put(InventoryTable.Cols.URI, inventory.getUri());
+        values.put(InventoryTable.Cols.PHONE, inventory.getPhone());
         return values;
     }
 
